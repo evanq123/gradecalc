@@ -4,36 +4,53 @@
 #include <string>
 using namespace std;
 
-long gradeCalc(long a, long b, long c, long d, long e, long f, long g){
-  long currPerc = c + e + f;
-  cout << "Current percentage is: " << currPerc  << "%" << endl;
+float percConv(float a, float b){
+  float d = a / b;
+  return d;
+}
+
+float gradeCalc(float a, float b, float c){
+  float w = percConv(c, b);
+  float d = w * a;
+  return d;
 }
 
 int main(){
-  long goalGrade;
-  long totForm;
-  long totSumm;
-  long totHomw;
-  long myForm;
-  long mySumm;
-  long myHomw;
-
   //ui
   cout << "What % do you want?:" << endl;
-  cin >> goalGrade;
-  cout << "Total % of Formative?:" << endl;
-  cin >> totForm;
-  cout << "What % do you have?:" << endl;
-  cin >> myForm;
-  cout << "Total % of Summative?:" << endl;
-  cin >> totSumm;
-  cout << "What % do you have?:" << endl;
-  cin >> mySumm;
-  cout << "Total % of Homework?" << endl;
-  cin >> totHomw;
-  cout << "What % do you have?:" << endl;
-  cin >> myHomw;
+  float goalGrade; cin >> goalGrade;
+
+  cout << "Enter values for Formative (if none put 0 for all): " << endl;
+    cout << "Weight: " << endl;
+    float wForm; cin >> wForm;
+    cout << "Total: " << endl;
+    float totForm; cin >> totForm;
+    cout << "Current points?: " << endl;
+    float myForm; cin >> myForm;
+
+  cout << "Enter values for Summative (if none put 0 for all): " << endl;
+    cout << "Weight: " << endl;
+    float wSumm; cin >> wSumm;
+    cout << "Total: " << endl;
+    float totSumm; cin >> totSumm;
+    cout << "Current points?: " << endl;
+    float mySumm; cin >> mySumm;
+
+  cout << "Enter values for Homework (if none put 0 for all): " << endl;
+    cout << "Weight: " << endl;
+    float wHome; cin >> wHome;
+    cout << "Total: " << endl;
+    float totHome; cin >> totHome;
+    cout << "Current points?: " << endl;
+    float myHome; cin >> myHome;
 
   //pass to calc function
-  gradeCalc(goalGrade, totForm, myForm, totSumm, mySumm, totHomw, myHomw);
+  float percForm = gradeCalc (wForm, totForm, myForm);
+  float percSumm = gradeCalc (wSumm, totSumm, mySumm);
+  float percHome = gradeCalc (wHome, totHome, myHome);
+
+  //debug
+  cout << "Formative: " << percForm << endl
+    << "Summative: " << percSumm << endl
+    << "Homework: " << percHome << endl;
 }
